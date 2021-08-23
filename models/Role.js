@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require(`sequelize`);
 const sequelize = require(`../config/connection`);
+const Department = require("./Department");
 
 class Role extends Model {}
 
@@ -20,7 +21,11 @@ Role.init(
         },
         department_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            // references: {
+            //     model: `department`,
+            //     key: `id`
+            // }
         }
     },
     {

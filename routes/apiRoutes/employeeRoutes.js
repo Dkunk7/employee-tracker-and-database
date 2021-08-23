@@ -1,13 +1,13 @@
 const router = require(`express`).Router();
-const Employee = require(`../../models/Employee`);
+const { Employee } = require(`../../models`);
 
 router.get(`/`, (req, res) => {
     Employee.findAll({
-        include: [
-            {
-                
-            }
-        ]
+        // include: [
+        //     {
+
+        //     }
+        // ]
     })
         .then(data => res.json(data))
         // .then(data => console.table([data]))

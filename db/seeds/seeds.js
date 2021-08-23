@@ -1,5 +1,6 @@
-const Department = require(`../../models/Department`);
-const Role = require(`../../models/Role`);
+const { Department, Role, Employee } = require(`../../models`);
+// const Role = require(`../../models/Role`);
+// const Employee = require(`../../models/Employee`);
 const sequelize = require(`../../config/connection`);
 
 const deptData = [
@@ -87,8 +88,72 @@ sequelize
 
 const employeeData = [
     {
-        first_name:
-        last_name:
-        manager_id:
-    }
+        first_name: `Don`,
+        last_name: `Quixote`,
+        role_id: 2,
+        manager_id: null
+    },
+    {
+        first_name: `Big`,
+        last_name: `Jim`,
+        role_id: 3,
+        manager_id: null
+    },
+    {
+        first_name: `Earl`,
+        last_name: `King`,
+        role_id: 6,
+        manager_id: null
+    },
+    {
+        first_name: `Timmy`,
+        last_name: `Kills`,
+        role_id: 1,
+        manager_id: 1
+    },
+    {
+        first_name: `Benny`,
+        last_name: `Buckhorn`,
+        role_id: 1,
+        manager_id: 1
+    },
+    {
+        first_name: `Gordon`,
+        last_name: `Ramshead`,
+        role_id: 4,
+        manager_id: 2
+    },
+    {
+        first_name: `Chayenne`,
+        last_name: `Apathy`,
+        role_id: 4,
+        manager_id: 2
+    },
+    {
+        first_name: `Leon`,
+        last_name: `Louise`,
+        role_id: 5,
+        manager_id: null
+    },
+    {
+        first_name: `Tara`,
+        last_name: `Bithia`,
+        role_id: 7,
+        manager_id: 6
+    },
+    
 ]
+
+sequelize
+    .sync({ force: true })
+    .then(() => {
+        return Employee.bulkCreate(employeeData);
+    })
+    .then(data => {
+        console.log(`Employees seeded`);
+        process.exit(0);
+    })
+    .catch(err => {
+        console.log(err);
+        process.exit(1);
+    });

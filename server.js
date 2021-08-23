@@ -86,7 +86,7 @@ const viewAllRoles = () => {
             if (response.ok) {
                 return response.json();
             }
-            alert('Error: ' + response.statusText);
+            // alert('Error: ' + response.statusText);
         })
         .then(response => {
             console.table(response);
@@ -94,7 +94,23 @@ const viewAllRoles = () => {
 }
 
 const viewAllEmp = () => {
-    
+    fetch(`http://localhost:3001/api/employees`, {
+        method: `GET`,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            // alert('Error: ' + response.statusText);
+        })
+        .then(response => {
+            console.table(response);
+        })
 }
 
 const addDept = () => {

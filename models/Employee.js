@@ -11,11 +11,21 @@ Employee.init(
             primaryKey: true,
         },
         first_name: {
-            type: DataTypes.STRING(30),
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1, 30]
+            }
         },
         last_name: {
-            type: DataTypes.STRING(30),
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1, 30]
+            }
+        },
+        role_id: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         manager_id: {

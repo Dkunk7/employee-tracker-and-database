@@ -1,7 +1,13 @@
 const { Model, DataTypes } = require(`sequelize`);
 const sequelize = require(`../config/connection`);
 
-class Department extends Model {}
+class Department extends Model {
+    // static deptName() {
+    //     const dept_name = this.name
+    //     return dept_name
+    // }
+
+}
 
 Department.init(
     {
