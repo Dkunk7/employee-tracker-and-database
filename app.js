@@ -1,13 +1,13 @@
 const cTable = require(`console.table`);
-const inquirer = require(`inquirer`);
+const { prompt } = require(`inquirer`);
 // const inquirer = require(`inquirer`);
 
 const db = require("./db/connection");
 
 
 const mainPrompt = () => {
-    return inquirer
-        .prompt([
+    // return inquirer
+        prompt([
             {
                 type: 'list',
                 name: `choice`,
