@@ -277,7 +277,7 @@ const updateEmp = () => {
                     params.push(role);
 
                     params[0] = role;
-                    params[1] = emply;
+                    params[1] = employee;
 
                     const sql = `UPDATE employee SET role_id = ? WHERE id =?`;
                     db.query(sql, params, (err,res) => {
