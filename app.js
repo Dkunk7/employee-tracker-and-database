@@ -1,8 +1,10 @@
 const cTable = require(`console.table`);
 const { prompt } = require(`inquirer`);
+const db = require("./db/connection");
 // const inquirer = require(`inquirer`);
 
-const db = require("./db/connection");
+
+// const prompt = inquirer.createPromptModule();
 
 
 const mainPrompt = () => {
@@ -10,8 +12,8 @@ const mainPrompt = () => {
         prompt([
             {
                 type: 'list',
-                name: `choice`,
-                message: `What would you like to do?`,
+                name: 'choice',
+                message: 'What would you like to do?',
                 choices: [`View all departments`, `View all roles`, `View all employees`, `Add a department`, `Add a role`, `Add an employee`, `Update an employee`]
             }
         ]).then((response) => {
@@ -76,7 +78,7 @@ const viewAllRoles = () => {
 
 // View all employees
 const viewAllEmp = () => {
-    console.log('Shwoing all employees');
+    console.log('Showing all employees');
 
     const sql = 'SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT (manager.first_name, " ", manager.last_name) AS manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id';
     db.promise().query(sql)
