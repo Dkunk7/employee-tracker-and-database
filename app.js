@@ -1,41 +1,49 @@
 const cTable = require(`console.table`);
-const inquirer, { prompt } = require(`inquirer`);
-const db = require("./db");
+const inquirer = require(`inquirer`);
+// const inquirer = require(`inquirer`);
+
+const db = require("./db/connection");
 
 
 const mainPrompt = () => {
     return inquirer
         .prompt([
             {
-                type: `list`,
+                type: 'list',
                 name: `choice`,
                 message: `What would you like to do?`,
                 choices: [`View all departments`, `View all roles`, `View all employees`, `Add a department`, `Add a role`, `Add an employee`, `Update an employee`]
             }
-        ]).then(response => {
-            if (response.choice === `View all departments`) {
-                console.log(`a`)
-                return viewAllDept();
-            } else if (response.choice === `View all roles`) {
-                console.log(`b`)
-                return viewAllRoles();
-            } else if (response.choice === `View all employees`) {
-                console.log(`c`)
-                return viewAllEmp();
-            } else if (response.choice === `Add a department`) {
-                console.log(`d`)
-                return addDept();
-            } else if (response.choice === `Add a role`) {
-                console.log(`e`)
-                return addRole();
-            } else if (response.choice === `Add an employee`) {
-                console.log(`f`)
-                return addEmp();
-            } else if (response.choice === `Update an employee`) {
-                console.log(`g`)
-                return updateEmp();
+        ]).then((response) => {
+            let choice = response.choice
+            switch (choice) {
+                case "View all departments":
+                    viewAllDept();
+                    break;
+                case "View all roles":
+                    viewAllRoles();
+                    break;
+                case "View all employees":
+                    viewAllEmp();
+                    break;
+                case "Add a department":
+                    addDept();
+                    break;
+                case "Add a role":
+                    addRole();
+                    break;
+                case "Add an employee":
+                    addEmp();
+                    break;
+                case "Update an employee":
+                    updateEmp();
+                    break;
+                // default:
+                //     mainPrompt();
+                //     break;
             }
-        });
+        })
+        // .catch(err => console.log(err));
 }
 
 // View all departments
